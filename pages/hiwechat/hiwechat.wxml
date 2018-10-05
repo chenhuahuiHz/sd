@@ -1,0 +1,9 @@
+<view>
+
+  我们都有一个踏实的梦想！
+
+<button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"	disabled="{{disabled}}" bindtap="clickTest" hover-class="other-button-hover" class='center'>
+  开始测试 
+</button>
+</view>
+  
