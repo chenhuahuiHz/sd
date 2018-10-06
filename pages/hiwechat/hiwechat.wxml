@@ -1,8 +1,8 @@
-<view>
+<view class='center'>
 
-  我们都有一个踏实的梦想！
+  <label class='biglabel'>我们都有一个踏实的梦想！</label>
 
-<button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"	disabled="{{disabled}}" bindtap="clickTest" hover-class="other-button-hover" class='center'>
+<button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"	disabled="{{disabled}}" bindtap="clickTest" hover-class="other-button-hover">
   开始测试 
 </button>
 </view>
