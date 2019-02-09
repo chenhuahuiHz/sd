@@ -10,6 +10,11 @@ Page({
       { name: "c" },
     ],
 
+    startdisable: false,
+    stopdisable: false,
+
+    listData: [],
+
     defaultSize: 'mini',
     primarySize: 'mini',
     warnSize: 'default',
@@ -18,9 +23,85 @@ Page({
     loading: false
   },
 
+  updatelistData(res) {
+    console.log("updatelistData", res.data)
+
+    for (var i in res.data) {
+      res.data[i].CostSeconds = this.formatSeconds(res.data[i].CostSeconds)
+    }
+
+    this.setData({
+      ['listData']: res.data
+    })
+
+    this.refreshButton()
+  },
+
+  formatSeconds(value) {
+    var secondTime = parseInt(value);// 秒
+    var minuteTime = 0;// 分
+    var hourTime = 0;// 小时
+    if(secondTime > 60) {//如果秒数大于60，将秒数转换成整数
+        //获取分钟，除以60取整数，得到整数分钟
+        minuteTime = parseInt(secondTime / 60);
+        //获取秒数，秒数取佘，得到整数秒数
+        secondTime = parseInt(secondTime % 60);
+        //如果分钟大于60，将分钟转换成小时
+        if (minuteTime > 60) {
+          //获取小时，获取分钟除以60，得到整数小时
+          hourTime = parseInt(minuteTime / 60);
+          //获取小时后取佘的分，获取分钟除以60取佘的分
+          minuteTime = parseInt(minuteTime % 60);
+        }
+      }
+      var result = "" + parseInt(secondTime) + "秒";
+
+      if (minuteTime > 0) {
+        result = "" + parseInt(minuteTime) + "分" + result;
+      }
+      if (hourTime > 0) {
+        result = "" + parseInt(hourTime) + "小时" + result;
+      }
+      return result;
+  },
+
+  refreshButton() {
+    if (this.data.listData[0]['State'] > 0) {
+      console.log("refreshButton:", 1);
+      this.setData({
+        ['startdisable']: false,
+        ['stopdisable']: true
+      })
+    } else {
+      console.log("refreshButton:", 0);
+      this.setData({
+        ['startdisable']: true,
+        ['stopdisable']: false
+      })
+    }
+  },
+
+  clickMore(e) {
+    wx.showModal({
+      title: '┗|｀O′|┛',
+      content: '敬请期待！',
+      success: function (res) {
+        if (res.confirm) {//这里是点击了确定以后
+          console.log('用户点击确定')
+        } else {//这里是点击了取消以后
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+
   clickStart(e) {
+    this.setData({
+      ['listData']: []
+    })
     console.log("start:", e);
     // https://piachh.cn/sd?act=start
+    // idinfolist = []
     wx.request({
       url: "https://www.piachh.cn/sd?act=start",
       method: "GET",
@@ -28,14 +109,40 @@ Page({
       header: {
         'Content-Type': "json"
       },
-      success: function (res) {
-        console.log(res)
-      }
+      success: this.updatelistData
     });
   },
 
   clickStop(e) {
+    this.setData({
+      ['listData']: []
+    })
     console.log("stop:", e);
+    wx.request({
+      url: "https://www.piachh.cn/sd?act=stop",
+      method: "GET",
+      data: {},
+      header: {
+        'Content-Type': "json"
+      },
+      success: this.updatelistData
+    });
+  },
+
+  getData() {
+    this.setData({
+      ['listData']: []
+    })
+    console.log("getData");
+    wx.request({
+      url: "https://www.piachh.cn/sd?act=get",
+      method: "GET",
+      data: {},
+      header: {
+        'Content-Type': "json"
+      },
+      success: this.updatelistData
+    });
   },
 
   /**
@@ -49,7 +156,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+    this.getData()
   },
 
   /**

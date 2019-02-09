@@ -1,12 +1,42 @@
 <view class='center'>
 
-  <label class='biglabel'>title！</label>
+  <!-- <label class='biglabel'>title！</label> -->
 
-<button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"	disabled="{{disabled}}" bindtap="clickStart" hover-class="other-button-hover">
-  开始 
-</button>
-<button type="warn" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"	disabled="{{disabled}}" bindtap="clickStop" hover-class="other-button-hover">
-  结束
-</button>
+<view class="buttonstyle">
+    <button type="primary" size="{{primarySize}}" loading="{{loading}}" disabled="{{startdisable}}" plain="{{plain}}"	 bindtap="clickStart" hover-class="other-button-hover">
+      开始 
+    </button>
+    <button size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"	 bindtap="clickMore" hover-class="other-button-hover">
+      更多数据
+    </button>
+    <button type="warn" size="{{primarySize}}" loading="{{loading}}" disabled="{{stopdisable}}" plain="{{plain}}"	bindtap="clickStop" hover-class="other-button-hover">
+      结束
+    </button>
+</view>
+
+
+<view class="table">
+  <view class="tr bg-w">
+    <!-- <view class="th">事件</view> -->
+    <view class="th">开始时间</view>
+    <view class="th">结束时间</view>
+    <view class="th ">耗时</view>
+  </view>
+  <block wx:for="{{listData}}" wx:key="{{id}}">
+    <view class="tr bg-g" wx:if="{{item.State == 0}}">
+      <!-- <view class="td">吃奶</view> -->
+      <view class="td">{{item.StartTime}}</view>
+      <view class="td">{{item.StopTime}}</view>
+      <view class="td">{{item.CostSeconds}}</view>
+    </view>
+    <view class="tr" wx:else>
+      <!-- <view class="td">吃奶</view> -->
+      <view class="td">{{item.StartTime}}</view>
+      <view class="td">{{item.StopTime}}</view>
+      <view class="td">{{item.CostSeconds}}</view>
+    </view>
+  </block>
+</view>
+
 </view>
   
