@@ -18,8 +18,24 @@ Page({
     loading: false
   },
 
-  clickTest(e) {
-    console.log(e);
+  clickStart(e) {
+    console.log("start:", e);
+    // https://piachh.cn/sd?act=start
+    wx.request({
+      url: "https://www.piachh.cn/sd?act=start",
+      method: "GET",
+      data: {},
+      header: {
+        'Content-Type': "json"
+      },
+      success: function (res) {
+        console.log(res)
+      }
+    });
+  },
+
+  clickStop(e) {
+    console.log("stop:", e);
   },
 
   /**

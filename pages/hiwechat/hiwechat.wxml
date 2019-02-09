@@ -1,9 +1,12 @@
 <view class='center'>
 
-  <label class='biglabel'>我们都有一个踏实的梦想！</label>
+  <label class='biglabel'>title！</label>
 
-<button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"	disabled="{{disabled}}" bindtap="clickTest" hover-class="other-button-hover">
-  开始测试 
+<button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"	disabled="{{disabled}}" bindtap="clickStart" hover-class="other-button-hover">
+  开始 
+</button>
+<button type="warn" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"	disabled="{{disabled}}" bindtap="clickStop" hover-class="other-button-hover">
+  结束
 </button>
 </view>
   
