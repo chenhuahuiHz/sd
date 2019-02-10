@@ -11,7 +11,9 @@ Page({
     ],
 
     startdisable: false,
-    stopdisable: false,
+    stopdisable: true,
+
+    switchBg: "../images/start.ico",
 
     listData: [],
 
@@ -70,13 +72,15 @@ Page({
       console.log("refreshButton:", 1);
       this.setData({
         ['startdisable']: false,
-        ['stopdisable']: true
+        ['stopdisable']: true,
+        ['switchBg']: "../images/start.ico"
       })
     } else {
       console.log("refreshButton:", 0);
       this.setData({
         ['startdisable']: true,
-        ['stopdisable']: false
+        ['stopdisable']: false,
+        ['switchBg']: "../images/stop.ico"
       })
     }
   },
@@ -129,6 +133,16 @@ Page({
     });
   },
 
+  clickSwitch(e) {
+    console.log("clickSwitch:", this.data.startdisable, e);
+    if (this.data.startdisable) {
+      // stop
+      this.clickStop(e)
+    } else {
+      this.clickStart(e)
+    }
+  },
+
   getData() {
     this.setData({
       ['listData']: []
@@ -150,6 +164,7 @@ Page({
    */
   onLoad: function (options) {
     //console.trace()
+    setInterval(this.getData, 3000);
   },
 
   /**
