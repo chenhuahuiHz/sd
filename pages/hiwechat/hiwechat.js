@@ -13,7 +13,7 @@ Page({
     startdisable: false,
     stopdisable: true,
 
-    switchBg: "../images/start.ico",
+    switchBg: "../images/start.png",
 
     listData: [],
 
@@ -73,14 +73,14 @@ Page({
       this.setData({
         ['startdisable']: false,
         ['stopdisable']: true,
-        ['switchBg']: "../images/start.ico"
+        ['switchBg']: "../images/start.png"
       })
     } else {
       console.log("refreshButton:", 0);
       this.setData({
         ['startdisable']: true,
         ['stopdisable']: false,
-        ['switchBg']: "../images/stop.ico"
+        ['switchBg']: "../images/stop.png"
       })
     }
   },
@@ -164,7 +164,7 @@ Page({
    */
   onLoad: function (options) {
     //console.trace()
-    setInterval(this.getData, 3000);
+    setInterval(this.getData, 6000);
   },
 
   /**
