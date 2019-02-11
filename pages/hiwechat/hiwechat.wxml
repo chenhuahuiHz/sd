@@ -43,5 +43,9 @@
     <image src="{{switchBg}}"></image>
   </view>
   
+  <view class="more-style" hover-class="plus-hover" bindtap="clickMore">
+    <image src="../images/tip.png"></image>
+  </view>
+  
 </view>
 

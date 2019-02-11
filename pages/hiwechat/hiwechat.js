@@ -21,7 +21,7 @@ Page({
     primarySize: 'mini',
     warnSize: 'default',
     disabled: false,
-    plain: false,
+    plain: true,
     loading: false
   },
 
@@ -43,16 +43,11 @@ Page({
     var secondTime = parseInt(value);// 秒
     var minuteTime = 0;// 分
     var hourTime = 0;// 小时
-    if(secondTime > 60) {//如果秒数大于60，将秒数转换成整数
-        //获取分钟，除以60取整数，得到整数分钟
+    if(secondTime > 60) {
         minuteTime = parseInt(secondTime / 60);
-        //获取秒数，秒数取佘，得到整数秒数
         secondTime = parseInt(secondTime % 60);
-        //如果分钟大于60，将分钟转换成小时
         if (minuteTime > 60) {
-          //获取小时，获取分钟除以60，得到整数小时
           hourTime = parseInt(minuteTime / 60);
-          //获取小时后取佘的分，获取分钟除以60取佘的分
           minuteTime = parseInt(minuteTime % 60);
         }
       }
@@ -86,17 +81,32 @@ Page({
   },
 
   clickMore(e) {
-    wx.showModal({
-      title: '┗|｀O′|┛',
-      content: '敬请期待！',
-      success: function (res) {
-        if (res.confirm) {//这里是点击了确定以后
-          console.log('用户点击确定')
-        } else {//这里是点击了取消以后
-          console.log('用户点击取消')
-        }
+    console.log("clickMore:", e);
+    wx.request({
+      url: "https://www.piachh.cn/sd?act=statist",
+      method: "GET",
+      data: {},
+      header: {
+        'Content-Type': "json"
+      },
+      success: function (ret) {
+
+        wx.showModal({
+          title: 'ヾ(；ﾟ(OO)ﾟ)ﾉ',
+          content: ret.data,
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {//这里是点击了确定以后
+              console.log('用户点击确定')
+            } else {//这里是点击了取消以后
+              console.log('用户点击取消')
+            }
+          }
+        })
       }
-    })
+    });
+
+
   },
 
   clickStart(e) {
@@ -144,9 +154,9 @@ Page({
   },
 
   getData() {
-    this.setData({
-      ['listData']: []
-    })
+    // this.setData({
+    //   ['listData']: []
+    // })
     console.log("getData");
     wx.request({
       url: "https://www.piachh.cn/sd?act=get",

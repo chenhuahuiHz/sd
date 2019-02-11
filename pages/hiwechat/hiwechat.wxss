@@ -5,10 +5,27 @@ view {
   
   background-image:url('data:image/peggi1.png'); 
 }
+.more-style{
+  position:fixed;
+  bottom:5%;
+  display: flex;
+  /* flex-direction: row; */
+  padding-top: 20px;
+  width:100%;
+  justify-content:center;
+}
+.more-style image {
+  width:32px;
+  height:32px;
+}
 .buttonstyle{
+  position:fixed;
+  bottom:5%;
   display: flex;
   flex-direction: row;
   padding-top: 20px;
+  width:100%;
+  justify-content:center;
 }
 .add-wrap {
   position:fixed;
