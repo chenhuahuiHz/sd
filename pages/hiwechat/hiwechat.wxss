@@ -68,6 +68,9 @@ view {
 .bg-g{
   background: #E6F3F9;
 }
+.bg-old{
+  background: rgba(82, 87, 90, 0.377);
+}
 .th {
   width: 40%;
   justify-content: center;

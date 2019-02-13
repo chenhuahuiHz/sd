@@ -29,6 +29,12 @@
         <view class="td">{{item.StopTime}}</view>
         <view class="td">{{item.CostSeconds}}</view>
       </view>
+      <view class="tr bg-old" wx:elif="{{item.State == 99}}">
+        <!-- <view class="td">吃奶</view> -->
+        <view class="td">{{item.StartTime}}</view>
+        <view class="td">{{item.StopTime}}</view>
+        <view class="td">{{item.CostSeconds}}</view>
+      </view>
       <view class="tr" wx:else>
         <!-- <view class="td">吃奶</view> -->
         <view class="td">{{item.StartTime}}</view>

@@ -28,8 +28,14 @@ Page({
   updatelistData(res) {
     console.log("updatelistData", res.data)
 
+    var today = new Date().setHours(0, 0, 0, 0)
     for (var i in res.data) {
       res.data[i].CostSeconds = this.formatSeconds(res.data[i].CostSeconds)
+
+      var t = new Date(res.data[i].StopTime)
+      if (today > t) {
+        res.data[i].State = 99 // 非今日数据
+      }
     }
 
     this.setData({
@@ -174,7 +180,6 @@ Page({
    */
   onLoad: function (options) {
     //console.trace()
-    setInterval(this.getData, 6000);
   },
 
   /**
@@ -182,6 +187,7 @@ Page({
    */
   onReady: function () {
     this.getData()
+    setInterval(this.getData, 6000);
   },
 
   /**
