@@ -1,4 +1,4 @@
-<view>
+<view class="center">
 
   <!-- <label class='biglabel'>title！</label> -->
 
@@ -15,7 +15,7 @@
 </view> -->
 
 
-  <view class="table">
+  <scroll-view scroll-y="true" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" class="table">
     <view class="tr bg-w">
       <!-- <view class="th">事件</view> -->
       <view class="th">开始时间</view>
@@ -29,11 +29,11 @@
         <view class="td">{{item.StopTime}}</view>
         <view class="td">{{item.CostSeconds}}</view>
       </view>
-      <view class="tr bg-old" wx:elif="{{item.State == 99}}">
+      <view class="tr bg-old" bindtap="clickRow" wx:elif="{{item.State == 99}}">
         <!-- <view class="td">吃奶</view> -->
-        <view class="td">{{item.StartTime}}</view>
-        <view class="td">{{item.StopTime}}</view>
-        <view class="td">{{item.CostSeconds}}</view>
+        <view class="told">{{item.StartTime}}</view>
+        <view class="told">{{item.StopTime}}</view>
+        <view class="told">{{item.CostSeconds}}</view>
       </view>
       <view class="tr" wx:else>
         <!-- <view class="td">吃奶</view> -->
@@ -43,7 +43,7 @@
       </view>
     </block>
     
-  </view>
+  </scroll-view>
   
   <view class="add-wrap" hover-class="plus-hover" bindtap="clickSwitch">
     <image src="{{switchBg}}"></image>

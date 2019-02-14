@@ -107,9 +107,9 @@ Page({
           content: ret.data,
           showCancel: false,
           success: function (res) {
-            if (res.confirm) {//这里是点击了确定以后
+            if (res.confirm) {
               console.log('用户点击确定')
-            } else {//这里是点击了取消以后
+            } else {
               console.log('用户点击取消')
             }
           }
@@ -164,6 +164,11 @@ Page({
     }
   },
 
+
+  clickRow(e) {
+    console.log("clickRow:", e);
+  },
+
   getData() {
     // this.setData({
     //   ['listData']: []
@@ -178,6 +183,16 @@ Page({
       },
       success: this.updatelistData
     });
+  },
+
+  upper: function (e) {
+    console.log('滚动到顶部')
+  },
+  lower: function (e) {
+    console.log('滚动到底部')
+  },
+  scroll: function (e) {
+    // console.log(e)
   },
 
   /**
