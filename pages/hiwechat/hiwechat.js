@@ -22,7 +22,8 @@ Page({
     warnSize: 'default',
     disabled: false,
     plain: true,
-    loading: false
+    loading: false,
+    datainit: false
   },
 
   updatelistData(res) {
@@ -44,7 +45,8 @@ Page({
     }
 
     this.setData({
-      ['listData']: res.data
+      ['listData']: res.data,
+      ['datainit']: true
     })
 
     this.refreshButton()
@@ -156,6 +158,19 @@ Page({
 
   clickSwitch(e) {
     console.log("clickSwitch:", this.data.startdisable, e);
+    if (!this.data.datainit) {
+      wx.showModal({
+        title: '(╯‵□′)╯︵┻━┻',
+        content: "数据正在初始化，请稍后再试~",
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          }
+        }
+      })
+      return
+    }
     if (this.data.startdisable) {
       // stop
       this.clickStop(e)
