@@ -34,13 +34,15 @@ Page({
     for (var i in res.data) {
       res.data[i].CostSeconds = this.formatSeconds(res.data[i].CostSeconds)
 
-      var time = res.data[i].StartTime
-      time = time.replace(/-/g, ':').replace(' ', ':');
-      time = time.split(':');
-      var t = new Date(time[0], (time[1] - 1), time[2], time[3], time[4], time[5]);
-      //console.log("today:", today.toString(), "t:", t.toString())
-      if (today > t) {
-        res.data[i].State = 99 // 非今日数据
+      if (res.data[i].State > 0) {
+        var time = res.data[i].StartTime
+        time = time.replace(/-/g, ':').replace(' ', ':');
+        time = time.split(':');
+        var t = new Date(time[0], (time[1] - 1), time[2], time[3], time[4], time[5]);
+        //console.log("today:", today.toString(), "t:", t.toString())
+        if (today > t) {
+          res.data[i].State = 99 // 非今日数据
+        }
       }
     }
 
